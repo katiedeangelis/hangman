@@ -79,14 +79,10 @@ function keyChosen(e) {
         letterGraveYard.push(keyPressed);
         document.querySelector(".letter-graveyard").innerHTML = letterGraveYard.join(", ");
 
-        //If the guesses left is less than zero say sorry you lose
-        if (guessesLeft < 0) {
-            document.querySelector(".guesses-left").innerHTML = "Sorry, you lose!";
-
-
-        } else { //Else show the number of guesses the user has left
+        if (guessesLeft > 0) { //Else show the number of guesses the user has left
 
             //Run through the movie chosen and turn the characters to lower case for comparison
+            var correctLetter = false;
             for (var j = 0; j < movieChosen.length; j++) {
                 var currentChar = movieChosen[j];
                 currentChar = currentChar.toLowerCase();
@@ -94,15 +90,22 @@ function keyChosen(e) {
                 //If key pressed is in the move title replace the underscore with that letter
                 if (keyPressed == currentChar) {
                     movieUnsolved[j] = movieChosen[j];
+                    correctLetter = true;
+                }
+            }
+
+            //If key pressed is not in the movie title deduct a guess from the guesses left
+            if (correctLetter === false) {
+                guessesLeft -= 1;
+                document.querySelector(".guesses-left").innerHTML = guessesLeft;
+                //If the guesses left is less than zero say sorry you lose
+                if (guessesLeft <= 0) {
+                    document.querySelector(".guesses-left").innerHTML = "Sorry, you lose!";
                 }
             }
         }
+
         document.querySelector(".movie").innerHTML = movieUnsolved.join(" ");
-        //If key pressed is not in the movie title deduct a guess from the guesses left
-        if (movieChosen.indexOf(keyPressed) === -1) {
-            guessesLeft = guessesLeft - 1;
-        }
-        document.querySelector(".guesses-left").innerHTML = guessesLeft;
 
     } else {
         alert("You already guessed that!");
