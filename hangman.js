@@ -49,37 +49,46 @@ var movieList = [
     "Wall E"
 ]
 
+//Randomly choose an alien movie
 var movieChosen = movieList[Math.floor(Math.random() * movieList.length)];
+
+//Take the randomly chosen movie string and split it into an array
 movieChosen = movieChosen.split("");
-console.log(movieChosen);
+
+//Copy the movie chosen array into the movie unsolved array
 var movieUnsolved = movieChosen.slice();
+
+//Create a letter grave yard array where incorrect guesses will be pushed
 var letterGraveYard = [];
 
+//Define that the user gets 10 incorrect guesses
+var guessesLeft = 10;
+
+//Loop through the movie unsolved array and if the character is not a space replace it with an underscore
 for (var j = 0; j < movieUnsolved.length; j++) {
     if (movieUnsolved[j] != " ") {
         movieUnsolved[j] = "_";
+        //if the character is a space assign it the following HTML (defined in hangman.css)
     } else {
         movieUnsolved[j] = "<span class='title-spaces'></span>";
     }
 }
-console.log(movieUnsolved);
 
-// User presses keys to guess letters
-var guessesLeft = 10;
-
+//As soon as the window opens listen for a keyup event
 window.addEventListener("keyup", keyChosen);
 
+//Assign the key the user pressed to the variable keyPressed and interpret it as lower case
 function keyChosen(e) {
     var keyPressed = e.key;
     keyPressed = keyPressed.toLowerCase();
-    //guessesLeft -= 1 (shorthand)
 
     // If the key pressed is not in the letter graveyard add it
     if (letterGraveYard.indexOf(keyPressed) === -1) {
         letterGraveYard.push(keyPressed);
         document.querySelector(".letter-graveyard").innerHTML = letterGraveYard.join(", ");
 
-        if (guessesLeft > 0) { //Else show the number of guesses the user has left
+        //If the key pressed isn't in the graveyard and the guesses left is greater than zero run the loop
+        if (guessesLeft > 0) {
 
             //Run through the movie chosen and turn the characters to lower case for comparison
             var correctLetter = false;
@@ -91,6 +100,11 @@ function keyChosen(e) {
                 if (keyPressed == currentChar) {
                     movieUnsolved[j] = movieChosen[j];
                     correctLetter = true;
+                    document.querySelector(".movie").innerHTML = movieUnsolved.join(" ");
+                    if (movieUnsolved.indexOf("_") === -1) {
+                        document.querySelector(".guesses-left").innerHTML = "You win! Refresh to play again.";
+                        window.removeEventListener("keyup", keyChosen);
+                    }
                 }
             }
 
@@ -100,7 +114,8 @@ function keyChosen(e) {
                 document.querySelector(".guesses-left").innerHTML = guessesLeft;
                 //If the guesses left is less than zero say sorry you lose
                 if (guessesLeft <= 0) {
-                    document.querySelector(".guesses-left").innerHTML = "Sorry, you lose!";
+                    document.querySelector(".guesses-left").innerHTML = "Sorry, you lose! Refresh to play again.";
+                    window.removeEventListener("keyup", keyChosen);
                 }
             }
         }
