@@ -18,11 +18,42 @@
 // Screen reads "press any key to start"
 // Player presses a key, game starts
 // A movie is randomly choosen from the movie array
-var movieList = ["Citizen Kane", "The Godfather", "Casablanca", "Raging Bull", "Singin in the Rain", "Gone with the Wind", "Lawrence of Arabia", "Schindlers List", "Vertigo", "The Wizard of Oz", "City Lights", "The Searcher", "Star Wars", "Psycho", "Sunset Blvd", "The Graduate", "The General"]
+var movieList = [
+    "Alien",
+    "Avatar",
+    "Blade Runner",
+    "District 9",
+    "Dune",
+    "ET",
+    "Fifth Element",
+    "Galaxy Quest",
+    "Gattica",
+    "Inception",
+    "Interstellar",
+    "Mad Max",
+    "Mars Attacks",
+    "Men in Black",
+    "Minority Report",
+    "Pacific Rim",
+    "Planet of the Apes",
+    "Predator",
+    "Robocop",
+    "Serenity",
+    "Signs",
+    "Star Wars",
+    "The Fly",
+    "The Matrix",
+    "The Terminator",
+    "The Thing",
+    "Total Recall",
+    "Wall E"
+]
+
 var movieChosen = movieList[Math.floor(Math.random() * movieList.length)];
 movieChosen = movieChosen.split("");
 console.log(movieChosen);
 var movieUnsolved = movieChosen.slice();
+var letterGraveYard = [];
 
 for (var j = 0; j < movieUnsolved.length; j++) {
     if (movieUnsolved[j] != " ") {
@@ -43,30 +74,40 @@ function keyChosen(e) {
     keyPressed = keyPressed.toLowerCase();
     //guessesLeft -= 1 (shorthand)
 
+    // If the key pressed is not in the letter graveyard add it
+    if (letterGraveYard.indexOf(keyPressed) === -1) {
+        letterGraveYard.push(keyPressed);
+        document.querySelector(".letter-graveyard").innerHTML = letterGraveYard.join(", ");
+
+        //If the guesses left is less than zero say sorry you lose
+        if (guessesLeft < 0) {
+            document.querySelector(".guesses-left").innerHTML = "Sorry, you lose!";
 
 
-    //If the guesses left is less than one say sorry you lose
-    if (guessesLeft < 0) {
-        document.querySelector(".guesses-left").innerHTML = "Sorry, you lose!";
-    //Else show the number of guesses the user has left
-    } else {
-        document.querySelector(".guesses-left").innerHTML = guessesLeft;
+        } else { //Else show the number of guesses the user has left
 
-        //Now process current guess
-        for (var j = 0; j < movieChosen.length; j++) {
-            var currentChar = movieChosen[j];
-            currentChar = currentChar.toLowerCase();
+            //Run through the movie chosen and turn the characters to lower case for comparison
+            for (var j = 0; j < movieChosen.length; j++) {
+                var currentChar = movieChosen[j];
+                currentChar = currentChar.toLowerCase();
 
-            //If key pressed guess is in the move print the letter to the console log
-            if (keyPressed == currentChar) {
-                console.log("Match! " + currentChar);
-                movieUnsolved[j] = movieChosen[j];
-                console.log(movieUnsolved);
+                //If key pressed is in the move title replace the underscore with that letter
+                if (keyPressed == currentChar) {
+                    movieUnsolved[j] = movieChosen[j];
+                }
             }
         }
+        document.querySelector(".movie").innerHTML = movieUnsolved.join(" ");
+        //If key pressed is not in the movie title deduct a guess from the guesses left
+        if (movieChosen.indexOf(keyPressed) === -1) {
+            guessesLeft = guessesLeft - 1;
+        }
+        document.querySelector(".guesses-left").innerHTML = guessesLeft;
+
+    } else {
+        alert("You already guessed that!");
+        return false;
     }
-    document.querySelector(".movie").innerHTML = movieUnsolved.join(" ");
-    guessesLeft = guessesLeft - 1;
 }
 //6. If the letter is correct it is revealed
 //7. If the letter is incorrect the number of guesses integer decreases by one
