@@ -69,13 +69,13 @@ a:link {
 }
 
 .main-hangman-body {
-    width: 960px;
+    width: 100%;
     margin: 0 auto;
 }
 
 .main-hangman-content {
     display: inline-block;
-    width: 960px;
+    width: 100%;
     text-align: center;
 }
 
@@ -84,12 +84,16 @@ h1 {
     font-size: 3em;
 }
 
+#instructions {
+    color: white;
+    padding: 30px;
+}
+
 #alieni {
     font-size: 200%;
     color: rgba(43, 226, 43, 0.77);
-    text-shadow: 1px 1px 2px rgba(224, 231, 235, 0.76), 0 0 25px rgba(134, 223, 186, 0.8), 0 0 5px #1FBD60;
+    text-shadow: 1px 1px 100px rgba(224, 231, 235, 0.76), 0 0 100px rgba(134, 223, 186, 0.8), 0 0 100px #1FBD60;
 }
-
 
 h2, h3, div, p{
     color: white;
@@ -173,4 +177,81 @@ footer {
     vertical-align: middle;
     line-height: 85px;
     text-align: center;
+}
+
+@media only screen and (max-width: 980px) {
+    /* For desktop: */
+    .main {
+        width: 420px;
+    }
+    .content,
+    .con-header {
+        width: 725px;
+    }
+    .tile {
+        width: 370px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    /* For tablet: */
+    .main {
+        width: 720px;
+    }
+    .content,
+    .con-header {
+        width: 720px;
+    }
+    .tile {
+        width: 305px;
+    }
+    .connect {
+        width: 720px;
+        float: none;
+        margin: 40px 0 0 0;
+    }
+}
+
+@media only screen and (max-width: 640px) {
+    /* For mobile phone: */
+    .main,
+    .content {
+        width: 595px;
+    }
+    .mainheader {
+        height: 200px;
+    }
+    .menu li {
+        float: none;
+        display: inline-block;
+        flex-grow: 1;
+    }
+    .menu {
+        float: none;
+        text-align: center;
+        display: flex;
+        justify-content: space-evenly;
+    }
+    .menu li a {
+        /* padding: 0px 60px 0px 60px; */
+    }
+    .con-header {
+        width: 100%;
+    }
+    .con-header h1 {
+        width: 100%;
+        text-align: center;
+        padding: 0;
+    }
+    .tile {
+        width: 535px;
+    }
+    .connect {
+        width: 595px;
+        float: none;
+    }
+    .aboutme p img {
+        width: 100%;
+        padding: 0 0 20px 0;
+    }
 }
