@@ -1,4 +1,176 @@
+@font-face {
+    font-family: alienfont;
+    src: url(AlienResurrection.ttf);
+}
+
+.mainheader {
+    height: 100px;
+    line-height: 50px;
+    border-bottom: 4px solid #cccccc;
+    margin: 0 0 40px 0;
+    background-color: #ffffff;
+    position: relative;
+    font-family: 'Georgia', Times, Times New Roman, serif;
+    transition: height 2s;
+}
+
+.con-header {
+    width: 960px;
+    margin: 0 auto;
+    transition: width 2s;
+}
+
+.con-header h1 {
+    line-height: 100px;
+    display: inline-block;
+    font-size: 30px;
+    background-color: #4aaaa5;
+    color: #ffffff;
+    padding: 0px 20px 0px 20px;
+    margin: 0px;
+    font-family: 'Georgia', Times, Times New Roman, serif;
+}
+
+.menu {
+    float: right;
+    color: #cccccc;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.menu li {
+    float: left;
+}
+
+.menu li a {
+    display: inline-block;
+    line-height: 100px;
+    padding: 0px 10px 0px 10px;
+    font-size: 1.4em;
+    color: #cccccc;
+    text-align: center;
+    text-decoration: none;
+    position: relative;
+    left: 0;
+    font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+.menu li:hover:not(.active) {
+    background-color: #4aaaa5;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+.active {
+    background-color: #4aaaa5;
+}
+
+.main-hangman-body {
+    width: 960px;
+    margin: 0 auto;
+}
+
+.main-hangman-content {
+    display: inline-block;
+    width: 960px;
+    text-align: center;
+}
+
+h1 {
+    font-family: alienfont;
+    font-size: 3em;
+}
+
+#alieni {
+    font-size: 200%;
+    color: rgba(43, 226, 43, 0.77);
+    text-shadow: 1px 1px 2px rgba(224, 231, 235, 0.76), 0 0 25px rgba(134, 223, 186, 0.8), 0 0 5px #1FBD60;
+}
+
+
+h2, h3, div, p{
+    color: white;
+}
+
 .title-spaces {
     display: inline-block;
     width: 10px;
+}
+
+body {
+    margin: 0 auto;
+    background-image: url(art/space.gif);
+    background-repeat: repeat;
+}
+
+#alienrimage {
+    width: 400px;
+}
+
+.alienr {
+    right: 800px;
+    position: absolute;
+    animation: alienr 30s infinite;
+}
+
+@keyframes alienr {
+    0% {
+        left: -500px;
+    }
+    30% {
+        left: -200px;
+    }
+    33% {
+        left: -200px;
+    }
+    100% {
+        left: -500px;
+    }
+}
+
+#alienlimage {
+    width: 400px;
+}
+
+.alienl {
+    top: 85px;
+    right: -500px;
+    position: absolute;
+    animation: alienl 30s infinite;
+    animation-delay: 15s;
+}
+
+@keyframes alienl {
+    0% {
+        right: -500px;
+    }
+    30% {
+        right: -200px;
+    }
+    33% {
+        right: -200px;
+    }
+    100% {
+        right: -500px;
+    }
+}
+
+footer {
+    height: 100px;
+    line-height: 50px;
+    text-align: center;
+    border-top: 10px solid #4aaaa5;
+    margin: 40px 0 0 0;
+    background-color: #666666;
+}
+
+#copy {
+    color: #cccccc;
+    font-size: .7em;
+    vertical-align: middle;
+    line-height: 85px;
+    text-align: center;
 }
