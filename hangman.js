@@ -126,9 +126,3 @@ function keyChosen(e) {
         return false;
     }
 }
-//6. If the letter is correct it is revealed
-//7. If the letter is incorrect the number of guesses integer decreases by one
-//8. Letters that have been guessesd (whether correct or incorrect) appear as guessed letters at the bottom of the screen
-//9. If the user solves the movie before their guesses reach 0 then the player wins
-//10. If the user doesn't solve the movie and their guesses reach 0 then th player looses
-//11. The player should be prompted to play again if they win or lose

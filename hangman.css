@@ -7,7 +7,7 @@
     height: 100px;
     line-height: 50px;
     border-bottom: 4px solid #cccccc;
-    margin: 0 0 40px 0;
+    margin: 0;
     background-color: #ffffff;
     position: relative;
     font-family: 'Georgia', Times, Times New Roman, serif;
@@ -37,6 +37,7 @@
     list-style-type: none;
     display: flex;
     justify-content: space-evenly;
+    margin: 0;
 }
 
 .menu li {
@@ -71,6 +72,7 @@ a:link {
 .main-hangman-body {
     width: 100%;
     margin: 0 auto;
+    transition: height 2s;
 }
 
 .main-hangman-content {
@@ -82,6 +84,7 @@ a:link {
 h1 {
     font-family: alienfont;
     font-size: 3em;
+    transition: height 2s;
 }
 
 #instructions {
@@ -93,6 +96,7 @@ h1 {
     font-size: 200%;
     color: rgba(43, 226, 43, 0.77);
     text-shadow: 1px 1px 100px rgba(224, 231, 235, 0.76), 0 0 100px rgba(134, 223, 186, 0.8), 0 0 100px #1FBD60;
+    transition: height 2s;
 }
 
 h2, h3, div, p{
@@ -116,7 +120,9 @@ body {
 
 .alienr {
     right: 800px;
+    top: 300px;
     position: absolute;
+    z-index: 1;
     animation: alienr 30s infinite;
 }
 
@@ -143,6 +149,7 @@ body {
     top: 85px;
     right: -500px;
     position: absolute;
+    z-index: 1;
     animation: alienl 30s infinite;
     animation-delay: 15s;
 }
@@ -167,7 +174,7 @@ footer {
     line-height: 50px;
     text-align: center;
     border-top: 10px solid #4aaaa5;
-    margin: 40px 0 0 0;
+    margin: 60px 0 0 0;
     background-color: #666666;
 }
 
@@ -185,11 +192,12 @@ footer {
         width: 420px;
     }
     .content,
-    .con-header {
+    .con-header,
+    .main-hangman-body {
         width: 725px;
     }
-    .tile {
-        width: 370px;
+    img {
+        width: 100%;
     }
 }
 
@@ -199,23 +207,20 @@ footer {
         width: 720px;
     }
     .content,
-    .con-header {
+    .con-header,
+    .main-hangman-body {
         width: 720px;
     }
-    .tile {
-        width: 305px;
-    }
-    .connect {
-        width: 720px;
-        float: none;
-        margin: 40px 0 0 0;
+    img {
+        width: 100%;
     }
 }
 
 @media only screen and (max-width: 640px) {
     /* For mobile phone: */
     .main,
-    .content {
+    .content,
+    .main-hangman-body {
         width: 595px;
     }
     .mainheader {
@@ -232,9 +237,6 @@ footer {
         display: flex;
         justify-content: space-evenly;
     }
-    .menu li a {
-        /* padding: 0px 60px 0px 60px; */
-    }
     .con-header {
         width: 100%;
     }
@@ -243,15 +245,7 @@ footer {
         text-align: center;
         padding: 0;
     }
-    .tile {
-        width: 535px;
-    }
-    .connect {
-        width: 595px;
-        float: none;
-    }
-    .aboutme p img {
+    img {
         width: 100%;
-        padding: 0 0 20px 0;
     }
 }
