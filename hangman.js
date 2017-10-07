@@ -40,7 +40,6 @@ var movieList = [
 //Randomly choose an alien movie
 var movieChosen;
 
-//Take the randomly chosen movie string and split it into an array
 
 
 //Copy the movie chosen array into the movie unsolved array
@@ -57,6 +56,7 @@ var wins = 0;
 
 function resetHangman() {
     movieChosen = movieList[Math.floor(Math.random() * movieList.length)];
+    //Take the randomly chosen movie string and split it into an array
     movieChosen = movieChosen.split("");
     movieUnsolved = movieChosen.slice();
     letterGraveYard = [];
@@ -73,12 +73,14 @@ function resetHangman() {
             movieUnsolved[j] = "<span class='title-spaces'></span>";
         }
     }
+    document.querySelector(".movie").innerHTML = movieUnsolved.join(" ");
 }
 
 //As soon as the page loads show the unsolved movie that was randomly selected
+window.addEventListener("load", resetHangman);
+
 window.addEventListener("load", function (event) {
     resetHangman();
-    document.querySelector(".movie").innerHTML = movieUnsolved.join(" ");
 });
 
 //As soon as the window opens listen for a keyup event
@@ -113,7 +115,14 @@ function keyChosen(e) {
 
                     //If there are no underscores left on the screen the movie has been guessed & the user wins
                     if (movieUnsolved.indexOf("_") === -1) {
-                        hangmanWin();
+                        document.querySelector(".movie").innerHTML = movieUnsolved.join(" ");
+                        setTimeout(function() {
+                            var playAgain = confirm("You win! Press OK to play again or cancel to quit.");
+                            if (playAgain == true) {
+                                hangmanWin();
+                            }
+                        }, 1000)
+                        
                     }
                 }
             }
@@ -125,7 +134,12 @@ function keyChosen(e) {
 
                 //If the guesses left is less than or equal to zero the movie has not been guessed & the user losses
                 if (guessesLeft <= 0) {
-                    resetHangman();
+                    var playAgain = confirm("You loose! Press OK to play again or cancel to quit.");
+                    if (playAgain == true) {
+                        hangmanWin();
+                    } else {
+                        window.removeEventListener("keyup", keyChosen);
+                    }
                 }
             }
         }
