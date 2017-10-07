@@ -112,6 +112,7 @@ body {
     margin: 0 auto;
     background-image: url(art/space.gif);
     background-repeat: repeat;
+    overflow-x: hidden;
 }
 
 #alienrimage {
